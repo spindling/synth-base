@@ -29,7 +29,8 @@ app.post("/api", async function(req,res){
 
 app.delete("/api", async function(req, res){
     console.log("DELETE COLLECTION REQUEST RECEIVED");
-    
+    await db.run("DELETE FROM Synthesizers");
+    res.json({"status": `All records deleted`});
 });
 
 app.get("/api/:id", async function(req, res){
@@ -50,6 +51,8 @@ app.put("/api/:id", async function(req, res){
 
 app.delete("/api/:id", async function(req,res){
     console.log("DELETE ITEM REQUEST RECEIVED");
+    await db.run("DELETE FROM Synthesizers WHERE rowid=?",[req.params.id]);
+    res.json({"status": `Record with id=${req.params.id} deleted`});
 });
 
 startup();
