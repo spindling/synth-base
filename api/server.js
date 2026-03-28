@@ -26,7 +26,9 @@ app.post("/api", async function(req,res){
     console.log("POST TO COLLECTION REQUEST RECEIVED");
     await db.run("INSERT INTO Synthesizers VALUES(?,?,?,?,?,?)",
         [req.body.make, req.body.model, req.body.price, req.body.keyboard, req.body.type, req.body.voice]);
-    res.json({"status": `Record created!`});
+    id = await db.all("SELECT last_insert_rowid()");
+
+    res.json({"status": `Record created with id=${[id]}!`});
         
 });
 
