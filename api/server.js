@@ -34,6 +34,8 @@ app.delete("/api", async function(req, res){
 
 app.get("/api/:id", async function(req, res){
     console.log("GET ITEM REQUEST RECEIVED");
+    const data = await db.all("SELECT * FROM Synthesizers WHERE rowid=?", [req.params.id]);
+    res.json(data);
 
 });
 
