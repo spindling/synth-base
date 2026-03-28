@@ -9,7 +9,7 @@ async function startup(){
     });
 
     await db.run("DROP TABLE IF EXISTS Synthesizers");
-    await db.run("CREATE TABLE Synthesizers (model TEXT, make TEXT, price NUMBER, keyboard INTEGER, type TEXT, voice TEXT)");
+    await db.run("CREATE TABLE Synthesizers (model TEXT, make TEXT, price INTEGER, keyboard INTEGER, type TEXT, voice TEXT)");
     await db.run("INSERT INTO Synthesizers VALUES (?,?,?,?,?,?)", 
         ["Moog", "MiniMoog", "7500", "1", "Analog", "Monophonic"]);
     await db.run("INSERT INTO Synthesizers VALUES (?,?,?,?,?,?)", 
