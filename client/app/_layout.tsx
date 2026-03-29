@@ -12,13 +12,18 @@ const styles = StyleSheet.create({
     heading: {
       fontSize: 28
       },
-    button: {
+    touchableButton: {
       flex: 1,
+      flexDirection: "row",
+      padding: 5,
+      marginVertical: 5,
+      marginHorizontal:2,
       width: 100,
       height: 50,
+      borderWidth: 1,
       backgroundColor: "lightblue",
-      justifyContent: "center",
-      alignItems: "center",
+      //justifyContent: "center",
+      //alignItems: "center",
 
     },
     buttonText:{
@@ -37,6 +42,11 @@ const styles = StyleSheet.create({
       alignItems: "center",
       marginVertical: 1,
       backgroundColor: "lightgreen"
+    },
+    textBox:{
+      flex:1,
+      borderWidth: 2,
+      width: 200
     }
 })
 export default function RootLayout() {
@@ -93,14 +103,14 @@ export default function RootLayout() {
       <View>
    
         <TouchableOpacity onPress={ retrieveAllItems }>
-            <View style={styles.button}>
+            <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Retrieve All Items
                 </Text>
             </View>
         </TouchableOpacity>
        
         <TouchableOpacity onPress={ deleteAllItems}>
-            <View style={styles.button}>
+            <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Delete All Items
                 </Text>
             </View>
@@ -108,19 +118,19 @@ export default function RootLayout() {
 
         <Text>Retrieve Item by ID</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {id}
           onChangeText={setID} />
 
         <TouchableOpacity onPress={ retrieveItem}>
-            <View style={styles.button}>
+            <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Retrieve Item
                 </Text>
             </View>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={ deleteItem}>
-            <View style={styles.button}>
+            <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Delete Item
                 </Text>
             </View>
@@ -129,48 +139,48 @@ export default function RootLayout() {
         <Text style={styles.heading}>Enter new synthesizer</Text>
         <Text>Make</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {formData.make}
           onChangeText= {data => setFormData(values => ({...values, make:data}))}
         />
         
         <Text>Model</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {formData.model}
           onChangeText= {data => setFormData(values => ({...values, model:data}))}
         />
 
         <Text>Price</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {formData.price}
           onChangeText= {data => setFormData(values => ({...values, price:data}))}
         />
 
         <Text>Keyboard</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style = {styles.textBox}
           value = {formData.keyboard}
           onChangeText= {data => setFormData(values => ({...values, keyboard:data}))}
         />
 
         <Text>Type</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {formData.type}
           onChangeText= {data => setFormData(values => ({...values, type:data}))}
         />
 
         <Text>Voice</Text>
         <TextInput
-          style={{borderWidth: 2}}
+          style={styles.textBox}
           value = {formData.voice}
           onChangeText= {data => setFormData(values => ({...values, voice:data}))}
         />
 
         <TouchableOpacity onPress={ enterItem}>
-            <View style={styles.button}>
+            <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Enter Item
                 </Text>
             </View>
