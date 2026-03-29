@@ -111,6 +111,8 @@ export default function RootLayout() {
     });
   }
 
+
+
   return (
 
     <View >
@@ -168,7 +170,7 @@ export default function RootLayout() {
         
         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
           {modifyForm ? (
-            <TouchableOpacity onPress={modifyItem}>
+            <TouchableOpacity onPress={() => {modifyItem; setModifyForm(false)}}>
             <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Modify Item
               </Text>
@@ -222,7 +224,7 @@ export default function RootLayout() {
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 3 }}>
-                <TouchableOpacity onPress={modifyItem}>
+                <TouchableOpacity onPress={()=> (setModifyForm(true))}>
                   <View style={styles.touchableButton}>
                     <Text style={styles.buttonText}>Modify
                     </Text>
