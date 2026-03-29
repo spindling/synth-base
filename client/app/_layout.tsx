@@ -24,11 +24,19 @@ export default function RootLayout() {
 
     async function retrieveItem()
     {
+      //needs functionality to only retrieve one item if id is empty
+
       const response = await axios.get("http://localhost:3000/api/" + id);
   
       setItems(response.data); 
     }
 
+    async function deleteItem()
+    {
+      //needs functionality to only delete one item if id is empty
+      const response = await axios.delete("http://localhost:3000/api/" + id);
+
+    }
     return (
       <ScrollView>
         <FlatList data={items}
@@ -48,7 +56,10 @@ export default function RootLayout() {
 
         <Button onPress={ retrieveItem }
                 title="Retrieve item"/>
+        <Button onPress={ deleteItem }
+                title="Delete item"/>
         <Text>{id}</Text>
+        
         
         
       </ScrollView>
