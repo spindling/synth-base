@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
 
 })
 export default function RootLayout() {
-  const [formData, setFormData] = useState({ make: "", model: "", price: "", keyboard: "", type: "", voice: "" });
-
+  const [newFormData, setNewFormData] = useState({ make: "", model: "", price: "", keyboard: "", type: "", voice: "" });
+  const [modFormData, setModFormData] = useState({ make: "", model: "", price: "", keyboard: "", type: "", voice: "" });
   const [result, setResult] = useState("");
   const [items, setItems] = useState([]);
   const [id, setID] = useState("");
@@ -72,12 +72,12 @@ export default function RootLayout() {
   async function enterItem() {
     const response = await axios.post("http://localhost:3000/api",
       {
-        make: formData.make,
-        model: formData.model,
-        price: parseFloat(formData.price),
-        keyboard: parseFloat(formData.keyboard),
-        type: formData.type,
-        voice: formData.voice
+        make: newFormData.make,
+        model: newFormData.model,
+        price: parseFloat(newFormData.price),
+        keyboard: parseFloat(newFormData.keyboard),
+        type: newFormData.type,
+        voice: newFormData.voice
       });
   }
   async function deleteAllItems() {
@@ -102,12 +102,12 @@ export default function RootLayout() {
   async function modifyItem() {
     const response = await axios.put("http://localhost:3000/api/" + id,
       {
-        make: formData.make,
-        model: formData.model,
-        price: parseFloat(formData.price),
-        keyboard: parseFloat(formData.keyboard),
-        type: formData.type,
-        voice: formData.voice
+        make: modFormData.make,
+        model: modFormData.model,
+        price: parseFloat(modFormData.price),
+        keyboard: parseFloat(modFormData.keyboard),
+        type: modFormData.type,
+        voice: modFormData.voice
       });
   }
 
@@ -127,43 +127,43 @@ export default function RootLayout() {
           <Text>Make</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.make}
-            onChangeText={data => setFormData(values => ({ ...values, make: data }))}
+            value={modFormData.make}
+            onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
           />
 
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.model}
-            onChangeText={data => setFormData(values => ({ ...values, model: data }))}
+            value={modFormData.model}
+            onChangeText={data => setModFormData(values => ({ ...values, model: data }))}
           />
 
           <Text>Price</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.price}
-            onChangeText={data => setFormData(values => ({ ...values, price: data }))}
+            value={modFormData.price}
+            onChangeText={data => setModFormData(values => ({ ...values, price: data }))}
           />
 
           <Text>Keyboard</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.keyboard}
-            onChangeText={data => setFormData(values => ({ ...values, keyboard: data }))}
+            value={modFormData.keyboard}
+            onChangeText={data => setModFormData(values => ({ ...values, keyboard: data }))}
           />
 
           <Text>Type</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.type}
-            onChangeText={data => setFormData(values => ({ ...values, type: data }))}
+            value={modFormData.type}
+            onChangeText={data => setModFormData(values => ({ ...values, type: data }))}
           />
 
           <Text>Voice</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.voice}
-            onChangeText={data => setFormData(values => ({ ...values, voice: data }))}
+            value={modFormData.voice}
+            onChangeText={data => setModFormData(values => ({ ...values, voice: data }))}
           />
 
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
@@ -193,43 +193,43 @@ export default function RootLayout() {
           <Text>Make</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.make}
-            onChangeText={data => setFormData(values => ({ ...values, make: data }))}
+            value={newFormData.make}
+            onChangeText={data => setNewFormData(values => ({ ...values, make: data }))}
           />
 
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.model}
-            onChangeText={data => setFormData(values => ({ ...values, model: data }))}
+            value={newFormData.model}
+            onChangeText={data => setNewFormData(values => ({ ...values, model: data }))}
           />
 
           <Text>Price</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.price}
-            onChangeText={data => setFormData(values => ({ ...values, price: data }))}
+            value={newFormData.price}
+            onChangeText={data => setNewFormData(values => ({ ...values, price: data }))}
           />
 
           <Text>Keyboard</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.keyboard}
-            onChangeText={data => setFormData(values => ({ ...values, keyboard: data }))}
+            value={newFormData.keyboard}
+            onChangeText={data => setNewFormData(values => ({ ...values, keyboard: data }))}
           />
 
           <Text>Type</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.type}
-            onChangeText={data => setFormData(values => ({ ...values, type: data }))}
+            value={newFormData.type}
+            onChangeText={data => setNewFormData(values => ({ ...values, type: data }))}
           />
 
           <Text>Voice</Text>
           <TextInput
             style={styles.textBox}
-            value={formData.voice}
-            onChangeText={data => setFormData(values => ({ ...values, voice: data }))}
+            value={newFormData.voice}
+            onChangeText={data => setNewFormData(values => ({ ...values, voice: data }))}
           />
 
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
