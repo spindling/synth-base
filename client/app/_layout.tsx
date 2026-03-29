@@ -4,7 +4,7 @@ import {useState} from "react";
 import axios from "axios";
 
 export default function RootLayout() {
-    const [value, setValue] = useState("abc");
+    const [values, setValues] = useState([]);
 
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
@@ -69,16 +69,15 @@ export default function RootLayout() {
         <Button onPress={ deleteItem }
                 title="Delete item"/>
 
+        <Text>Make</Text>
         <TextInput
           style={{borderWidth: 2}}
-          value = {value}
-          onChangeText={setValue} />
-          
+          value = {values.push}
+          onChangeText={setValues} />
+        
         <Button onPress={ enterItem }
                 title="Enter item"/>
-        <Text>{id}</Text>
-        
-
+        <Text>{values}</Text>
         
         
       </ScrollView>
