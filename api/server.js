@@ -1,9 +1,11 @@
 const sqlite3 = require("sqlite3").verbose();
 const sqlite = require("sqlite");
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 async function startup(){
   db = await sqlite.open({
