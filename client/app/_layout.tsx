@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#87cfeb71"
   },
   textBox: {
-    flex: 1,
+    backgroundColor: "#eeeeeeff",
     borderWidth: 2,
     width: 200
   }
@@ -158,43 +158,53 @@ export default function RootLayout() {
         </View>
       </View>
 
-      <TouchableOpacity onPress={retrieveAllItems}>
-        <View style={styles.touchableButton}>
-          <Text style={styles.buttonText}>Retrieve All Items
-          </Text>
-        </View>
-      </TouchableOpacity>
+      <View style={{flexDirection: "row", flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <TouchableOpacity onPress={retrieveAllItems}>
+            <View style={styles.touchableButton}>
+              <Text style={styles.buttonText}>Retrieve All Items
+              </Text>
+            </View>
+          </TouchableOpacity>
 
-      <TouchableOpacity onPress={deleteAllItems}>
-        <View style={styles.touchableButton}>
-          <Text style={styles.buttonText}>Delete All Items
-          </Text>
+          <TouchableOpacity onPress={deleteAllItems}>
+            <View style={styles.touchableButton}>
+              <Text style={styles.buttonText}>Delete All Items
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
 
-      <View style={{flexDirection: "column", backgroundColor: "#49eb5772", width: 400, height: 200, padding: 10}}>
-        <Text>Enter Synth ID:</Text>
-        <TextInput
-          style={styles.textBox}
-          value={id}
-          onChangeText={setID} />
-      
-
-      <TouchableOpacity onPress={retrieveItem}>
-        <View style={styles.touchableButton}>
-          <Text style={styles.buttonText}>Retrieve Item
-          </Text>
+        <View style={{ flex: 1 }}>
+          <View style={{flexDirection: "column", backgroundColor: "#49eb5772", width: 400,height: 200, padding: 10 }}>
+            <View style={{flex: 2}}>
+            <Text style={styles.subheading}>Enter Synth ID:</Text>
+            <TextInput
+              style={styles.textBox}
+              value={id}
+              onChangeText={setID} />
+            </View>
+            <View style={{ flex: 1, flexDirection:"row" }}>
+              <View style={{ flex: 2 }}>
+                <TouchableOpacity onPress={retrieveItem}>
+                  <View style={styles.touchableButton}>
+                    <Text style={styles.buttonText}>Retrieve
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flex: 2 }}>
+                <TouchableOpacity onPress={deleteItem}>
+                  <View style={styles.touchableButton}>
+                    <Text style={styles.buttonText}>Delete Item
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={deleteItem}>
-        <View style={styles.touchableButton}>
-          <Text style={styles.buttonText}>Delete Item
-          </Text>
-        </View>
-      </TouchableOpacity>
       </View>
-
       <View style={{padding: 10}}>
         <Text style={styles.subheading}>Results</Text>
         <FlatList data={items}
