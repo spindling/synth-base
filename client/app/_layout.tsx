@@ -23,7 +23,12 @@ const styles = StyleSheet.create({
     buttonText:{
       fontSize: 16
     },
-    
+    listItem:{
+        padding: 5,
+        marginVertical: 10,
+        marginHorizontal: 5,
+    },
+
     
 })
 export default function RootLayout() {
@@ -80,13 +85,16 @@ export default function RootLayout() {
       <View>
         <View style={{flex:1}}>
             
-          <FlatList data={items}
-                renderItem={({item}) => <Text>
-                  
-                  <View>
-
-                  </View>
-                  {item.make} {item.model} {item.price} {item.keyboard} {item.type} {item.voice}</Text>}
+          <FlatList data={items} 
+                renderItem={({item}) => 
+                <Text>
+                <Text style={styles.listItem}>{item.make}</Text> 
+                 <Text style={styles.listItem}>{item.model} </Text>
+                 <Text style={styles.listItem}>{item.price} </Text> 
+                 <Text style={styles.listItem}>{item.keyboard} </Text> 
+                 <Text style={styles.listItem}>{item.type} </Text> 
+                  <Text style={styles.listItem}>{item.voice}</Text>
+                </Text>}
                 keyExtractor={(item) => item.id }
           />  
            
