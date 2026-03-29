@@ -91,25 +91,7 @@ export default function RootLayout() {
 
     return (
       <View>
-        <View >
-          <Text style={styles.heading}>Results</Text>
-          <FlatList data={items} 
-                renderItem={({item}) => 
-                <View style={styles.listRow}>
-                
-                  <Text style={styles.listItem}>{item.make}</Text> 
-                  <Text style={styles.listItem}>{item.model} </Text>
-                  <Text style={styles.listItem}>{item.price} </Text> 
-                  <Text style={styles.listItem}>{item.keyboard} </Text> 
-                  <Text style={styles.listItem}>{item.type} </Text> 
-                  <Text style={styles.listItem}>{item.voice}</Text>
-                </View>}
-                keyExtractor={(item) => item.id }
-          />  
-           
-        </View>
-        
-        
+   
         <TouchableOpacity onPress={ retrieveAllItems }>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Retrieve All Items
@@ -193,6 +175,24 @@ export default function RootLayout() {
                 </Text>
             </View>
         </TouchableOpacity>
+
+         <View >
+          <Text style={styles.heading}>Results</Text>
+          <FlatList data={items} 
+                renderItem={({item}) => 
+                <View style={styles.listRow}>
+                
+                  <Text style={styles.listItem}>{item.make}</Text> 
+                  <Text style={styles.listItem}>{item.model} </Text>
+                  <Text style={styles.listItem}>{item.price} </Text> 
+                  <Text style={styles.listItem}>{item.keyboard} </Text> 
+                  <Text style={styles.listItem}>{item.type} </Text> 
+                  <Text style={styles.listItem}>{item.voice}</Text>
+                </View>}
+                keyExtractor={(item) => item.id }
+          />  
+           
+        </View>
        
       </View>
     );
