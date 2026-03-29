@@ -13,11 +13,6 @@ const styles = StyleSheet.create({
       fontSize: 28
       },
     
-    heading: {
-      fontSize: 40,
-      fontWeight: "bold"
-    },
-
     touchableButton: {
       flex: 1,
       flexDirection: "row",
@@ -27,13 +22,15 @@ const styles = StyleSheet.create({
       width: 100,
       height: 50,
       borderWidth: 1,
-      backgroundColor: "lightblue",
+      backgroundColor: "#4169E1",
+      
       //justifyContent: "center",
       //alignItems: "center",
 
     },
     buttonText:{
-      fontSize: 16
+      fontSize: 16,
+      color: "white"
     },
     listItem:{
         flex: 1,
@@ -54,6 +51,7 @@ const styles = StyleSheet.create({
       borderWidth: 2,
       width: 200
     }
+
 })
 export default function RootLayout() {
     const [formData, setFormData] = useState({make:"", model:"", price: "", keyboard:"",type:"", voice:""});
@@ -108,11 +106,11 @@ export default function RootLayout() {
     return (
       
       <View>
-        <Text style={styles.heading}>SynthBase</Text>
+        <Text style={{fontSize: 40, fontWeight: "bold"}}>SynthBase</Text>
 
 
-        <View>
-          <Text style={styles.subheading}>Enter new synthesizer</Text>
+        <View style={{backgroundColor: "#397aa550", width: 400}}>
+          <Text style={styles.subheading}>Add New Synth</Text>
           <Text>Make</Text>
           <TextInput
             style={styles.textBox}
@@ -154,13 +152,14 @@ export default function RootLayout() {
             value = {formData.voice}
             onChangeText= {data => setFormData(values => ({...values, voice:data}))}
           />
-  
+          <View style={{flexDirection:"row", justifyContent: "flex-end"}}>
           <TouchableOpacity onPress={ enterItem}>
               <View style={styles.touchableButton}>
                 <Text style={styles.buttonText}>Enter Item
                   </Text>
               </View>
           </TouchableOpacity>
+          </View>
         </View>
         
         <TouchableOpacity onPress={ retrieveAllItems }>
