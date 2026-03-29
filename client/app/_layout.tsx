@@ -4,7 +4,7 @@ import {useState} from "react";
 import axios from "axios";
 
 export default function RootLayout() {
-    const [formData, setFormData] = useState({make:"n/a", model:"n/a", price: "0", keyboard:"0",type:"n/a", voice:"n/a"});
+    const [formData, setFormData] = useState({make:"", model:"", price: "", keyboard:"",type:"", voice:""});
     
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
@@ -22,8 +22,8 @@ export default function RootLayout() {
       const response = await axios.post("http://localhost:3000/api",
                                         {make: formData.make, 
                                          model: formData.model,
-                                         price: 0,
-                                         keyboard: 0,
+                                         price: parseFloat(formData.price),
+                                         keyboard: parseFloat(formData.keyboard),
                                          type: formData.type,
                                          voice: formData.voice});
     }
@@ -47,10 +47,16 @@ export default function RootLayout() {
       const response = await axios.delete("http://localhost:3000/api/" + id);
 
     }
+
+    async function modifyItem()
+    {
+      
+    }
+
     return (
       <ScrollView>
         <FlatList data={items}
-                  renderItem={({item}) => <Text>{item.make} {item.model}</Text>}
+                  renderItem={({item}) => <Text>{item.make} {item.model} {item.price} {item.keyboard} {item.type} {item.voice}</Text>}
                   keyExtractor={(item) => item.id }
         />
         <Button onPress={ retrieveAllItems }
