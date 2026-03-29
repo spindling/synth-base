@@ -4,8 +4,8 @@ import {useState} from "react";
 import axios from "axios";
 
 export default function RootLayout() {
-    const [values, setValues] = useState({make:"", model:"", price:"", keyboard:"",type:"", voice:""});
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState({make:"n/a", model:"n/a", price:"n/a", keyboard:"n/a",type:"n/a", voice:"n/a"});
+    
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
     const [id, setID] = useState("");
@@ -73,20 +73,20 @@ export default function RootLayout() {
         <Text>Make</Text>
         <TextInput
           style={{borderWidth: 2}}
-          value = {values.make}
-          onChangeText= {data => setValues({make:data})}
+          value = {formData.make}
+          onChangeText= {data=>setFormData({make:data})}
         />
         
         <Text>Model</Text>
         <TextInput
           style={{borderWidth: 2}}
-          value = {values.model}
-          onChangeText= {data => setValues({model:data})}
+          //value = {formData.model}
+          //onChangeText= {data => setValues({model:data})}
         />
         <Button //onPress={ enterItem }
                 title="Enter item"/>
-        <Text>{values.make}</Text>
-        <Text>{values.model}</Text>
+        <Text>{formData.make}</Text>
+        <Text>{formData.model}</Text>
         
         
       </ScrollView>
