@@ -17,6 +17,16 @@ export default function RootLayout() {
       setItems(response.data); 
     }
 
+    async function enterItem()
+    {
+      const response = await axios.post("http://localhost:3000/api",
+                                        {make: "Korg", 
+                                         model: "MicroKorg",
+                                         price: 600,
+                                         keyboard: 1,
+                                         type: "Digital",
+                                         voice: "Polyphonic"});
+    }
     async function deleteAllItems()
     {
       const response = await axios.delete("http://localhost:3000/api");
@@ -58,8 +68,17 @@ export default function RootLayout() {
                 title="Retrieve item"/>
         <Button onPress={ deleteItem }
                 title="Delete item"/>
+
+        <TextInput
+          style={{borderWidth: 2}}
+          value = {value}
+          onChangeText={setValue} />
+          
+        <Button onPress={ enterItem }
+                title="Enter item"/>
         <Text>{id}</Text>
         
+
         
         
       </ScrollView>
