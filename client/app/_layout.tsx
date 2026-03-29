@@ -4,7 +4,7 @@ import {useState} from "react";
 import axios from "axios";
 
 export default function RootLayout() {
-    const [formData, setFormData] = useState({make:"n/a", model:"n/a", price: "", keyboard:"",type:"n/a", voice:"n/a"});
+    const [formData, setFormData] = useState({make:"n/a", model:"n/a", price: "0", keyboard:"0",type:"n/a", voice:"n/a"});
     
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
@@ -20,12 +20,12 @@ export default function RootLayout() {
     async function enterItem()
     {
       const response = await axios.post("http://localhost:3000/api",
-                                        {make: "Korg", 
-                                         model: "MicroKorg",
-                                         price: 600,
-                                         keyboard: 1,
-                                         type: "Digital",
-                                         voice: "Polyphonic"});
+                                        {make: formData.make, 
+                                         model: formData.model,
+                                         price: 0,
+                                         keyboard: 0,
+                                         type: formData.type,
+                                         voice: formData.voice});
     }
     async function deleteAllItems()
     {
@@ -112,7 +112,7 @@ export default function RootLayout() {
           onChangeText= {data => setFormData(values => ({...values, voice:data}))}
         />
 
-        <Button //onPress={ enterItem }
+        <Button onPress={ enterItem }
                 title="Enter item"/>
        
       </ScrollView>
