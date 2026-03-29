@@ -16,6 +16,10 @@ export default function RootLayout() {
       setItems(response.data); 
     }
 
+    async function deleteAllItems()
+    {
+      const response = await axios.delete("http://localhost:3000/api");
+    }
 
     return (
       <ScrollView>
@@ -26,6 +30,8 @@ export default function RootLayout() {
         <Button onPress={ retrieveAllItems }
                 title="Retrieve All Items" />
        
+        <Button onPress={ deleteAllItems}
+                title="Delete All Items" />
 
       </ScrollView>
     );
