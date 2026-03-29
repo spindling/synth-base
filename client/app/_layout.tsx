@@ -4,12 +4,12 @@ import {useState} from "react";
 import axios from "axios";
 
 export default function RootLayout() {
-    const [values, setValues] = useState([]);
-
+    const [values, setValues] = useState({make:"", model:"", price:"", keyboard:"",type:"", voice:""});
+    const [formData, setFormData] = useState([]);
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
     const [id, setID] = useState("");
-  
+    
     async function retrieveAllItems()
     {
       const response = await axios.get("http://localhost:3000/api");
@@ -69,15 +69,24 @@ export default function RootLayout() {
         <Button onPress={ deleteItem }
                 title="Delete item"/>
 
+        <Text>Enter new synthesizer</Text>
         <Text>Make</Text>
         <TextInput
           style={{borderWidth: 2}}
-          value = {values.push}
-          onChangeText={setValues} />
+          value = {values.make}
+          onChangeText= {data => setValues({make:data})}
+        />
         
-        <Button onPress={ enterItem }
+        <Text>Model</Text>
+        <TextInput
+          style={{borderWidth: 2}}
+          value = {values.model}
+          onChangeText= {data => setValues({model:data})}
+        />
+        <Button //onPress={ enterItem }
                 title="Enter item"/>
-        <Text>{values}</Text>
+        <Text>{values.make}</Text>
+        <Text>{values.model}</Text>
         
         
       </ScrollView>
