@@ -74,14 +74,14 @@ export default function RootLayout() {
         <TextInput
           style={{borderWidth: 2}}
           value = {formData.make}
-          onChangeText= {data=>setFormData({make:data})}
+          onChangeText= {data => setFormData(values => ({...values, make:data}))}
         />
         
         <Text>Model</Text>
         <TextInput
           style={{borderWidth: 2}}
-          //value = {formData.model}
-          //onChangeText= {data => setValues({model:data})}
+          value = {formData.model}
+          onChangeText= {data => setFormData(values => ({...values, model:data}))}
         />
         <Button //onPress={ enterItem }
                 title="Enter item"/>
