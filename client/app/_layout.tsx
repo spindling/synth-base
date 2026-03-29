@@ -8,6 +8,7 @@ export default function RootLayout() {
 
     const [result, setResult] = useState("");
     const [items, setItems] = useState([]);
+    const [id, setID] = useState("");
   
     async function retrieveAllItems()
     {
@@ -21,6 +22,13 @@ export default function RootLayout() {
       const response = await axios.delete("http://localhost:3000/api");
     }
 
+    async function retrieveItem()
+    {
+      const response = await axios.get("http://localhost:3000/api");
+  
+      setItems(response.data); 
+    }
+
     return (
       <ScrollView>
         <FlatList data={items}
@@ -32,7 +40,17 @@ export default function RootLayout() {
        
         <Button onPress={ deleteAllItems}
                 title="Delete All Items" />
+        <Text>Retrieve Item by ID</Text>
+        <TextInput
+          style={{borderWidth: 2}}
+          value = {value}
+          onChangeText={setValue} />
 
+        <Button onPress={ () => setID(value) }
+                title="Retrieve item"/>
+        <Text>{id}</Text>
+        
+        
       </ScrollView>
     );
   
