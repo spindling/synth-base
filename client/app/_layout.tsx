@@ -18,18 +18,26 @@ const styles = StyleSheet.create({
       height: 50,
       backgroundColor: "lightblue",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+
     },
     buttonText:{
       fontSize: 16
     },
     listItem:{
-        padding: 5,
-        marginVertical: 10,
-        marginHorizontal: 5,
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 5,
+        marginHorizontal: 0,
     },
-
-    
+    listRow:{
+      flex:1,
+      flexDirection: "row",
+      alignItems: "center",
+      marginVertical: 1,
+      backgroundColor: "lightgreen"
+    }
 })
 export default function RootLayout() {
     const [formData, setFormData] = useState({make:"", model:"", price: "", keyboard:"",type:"", voice:""});
@@ -83,18 +91,19 @@ export default function RootLayout() {
 
     return (
       <View>
-        <View style={{flex:1}}>
-            
+        <View >
+          <Text style={styles.heading}>Results</Text>
           <FlatList data={items} 
                 renderItem={({item}) => 
-                <Text>
-                <Text style={styles.listItem}>{item.make}</Text> 
-                 <Text style={styles.listItem}>{item.model} </Text>
-                 <Text style={styles.listItem}>{item.price} </Text> 
-                 <Text style={styles.listItem}>{item.keyboard} </Text> 
-                 <Text style={styles.listItem}>{item.type} </Text> 
+                <View style={styles.listRow}>
+                
+                  <Text style={styles.listItem}>{item.make}</Text> 
+                  <Text style={styles.listItem}>{item.model} </Text>
+                  <Text style={styles.listItem}>{item.price} </Text> 
+                  <Text style={styles.listItem}>{item.keyboard} </Text> 
+                  <Text style={styles.listItem}>{item.type} </Text> 
                   <Text style={styles.listItem}>{item.voice}</Text>
-                </Text>}
+                </View>}
                 keyExtractor={(item) => item.id }
           />  
            
