@@ -1,8 +1,31 @@
-import {Button, TextInput, Text, View, ScrollView, FlatList} from "react-native";
+import {TouchableHighlight, TouchableOpacity, StyleSheet, Button, TextInput, Text, View, ScrollView, FlatList} from "react-native";
 import {useState} from "react";
 
 import axios from "axios";
+import { blue } from "react-native-reanimated/lib/typescript/Colors";
 
+const styles = StyleSheet.create({
+    content:{
+      paddingTop: 50
+    },
+
+    heading: {
+      fontSize: 28
+      },
+    button: {
+      flex: 1,
+      width: 100,
+      height: 50,
+      backgroundColor: "lightblue",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    buttonText:{
+      fontSize: 16
+    },
+    
+    
+})
 export default function RootLayout() {
     const [formData, setFormData] = useState({make:"", model:"", price: "", keyboard:"",type:"", voice:""});
     
@@ -50,32 +73,61 @@ export default function RootLayout() {
 
     async function modifyItem()
     {
-      
+      //todo
     }
 
     return (
-      <ScrollView>
-        <FlatList data={items}
-                  renderItem={({item}) => <Text>{item.make} {item.model} {item.price} {item.keyboard} {item.type} {item.voice}</Text>}
-                  keyExtractor={(item) => item.id }
-        />
-        <Button onPress={ retrieveAllItems }
-                title="Retrieve All Items" />
+      <View>
+        <View style={{flex:1}}>
+            
+          <FlatList data={items}
+                renderItem={({item}) => <Text>
+                  
+                  <View>
+
+                  </View>
+                  {item.make} {item.model} {item.price} {item.keyboard} {item.type} {item.voice}</Text>}
+                keyExtractor={(item) => item.id }
+          />  
+           
+        </View>
+        
+        
+        <TouchableOpacity onPress={ retrieveAllItems }>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Retrieve All Items
+                </Text>
+            </View>
+        </TouchableOpacity>
        
-        <Button onPress={ deleteAllItems}
-                title="Delete All Items" />
+        <TouchableOpacity onPress={ deleteAllItems}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Delete All Items
+                </Text>
+            </View>
+        </TouchableOpacity>
+
         <Text>Retrieve Item by ID</Text>
         <TextInput
           style={{borderWidth: 2}}
           value = {id}
           onChangeText={setID} />
 
-        <Button onPress={ retrieveItem }
-                title="Retrieve item"/>
-        <Button onPress={ deleteItem }
-                title="Delete item"/>
+        <TouchableOpacity onPress={ retrieveItem}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Retrieve Item
+                </Text>
+            </View>
+        </TouchableOpacity>
 
-        <Text>Enter new synthesizer</Text>
+        <TouchableOpacity onPress={ deleteItem}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Delete Item
+                </Text>
+            </View>
+        </TouchableOpacity>
+
+        <Text style={styles.heading}>Enter new synthesizer</Text>
         <Text>Make</Text>
         <TextInput
           style={{borderWidth: 2}}
@@ -118,10 +170,14 @@ export default function RootLayout() {
           onChangeText= {data => setFormData(values => ({...values, voice:data}))}
         />
 
-        <Button onPress={ enterItem }
-                title="Enter item"/>
+        <TouchableOpacity onPress={ enterItem}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Enter Item
+                </Text>
+            </View>
+        </TouchableOpacity>
        
-      </ScrollView>
+      </View>
     );
   
 }
