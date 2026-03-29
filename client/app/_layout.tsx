@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: "white"
+    color: "white",
+  
   },
   listItem: {
     flex: 1,
@@ -96,16 +97,25 @@ export default function RootLayout() {
   }
 
   async function modifyItem() {
-    //todo
+    const response = await axios.put("http://localhost:3000/api/" + id,
+    {
+        make: formData.make,
+        model: formData.model,
+        price: parseFloat(formData.price),
+        keyboard: parseFloat(formData.keyboard),
+        type: formData.type,
+        voice: formData.voice
+    });
   }
 
   return (
 
-    <View>
-      <Text style={{ fontSize: 40, fontWeight: "bold" }}>SynthBase</Text>
+    <View >
+  
+      <Text style={{ fontSize: 40, fontWeight: "bold"}}>SynthBase</Text>
 
 
-      <View style={{ backgroundColor: "#dae8fc", width: 400, borderWidth: 1, padding: 10 }}>
+      <View style={{ backgroundColor: "#dae8fc", width: 400, borderWidth: 1, padding: 10}}>
         <Text style={styles.subheading}>Add New Synth</Text>
         <Text>Make</Text>
         <TextInput
@@ -158,7 +168,7 @@ export default function RootLayout() {
         </View>
       </View>
 
-      <View style={{flexDirection: "row", flex: 1 }}>
+      <View style={{flexDirection: "row"}}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <TouchableOpacity onPress={retrieveAllItems}>
             <View style={styles.touchableButton}>
@@ -185,7 +195,7 @@ export default function RootLayout() {
               onChangeText={setID} />
             </View>
             <View style={{ flex: 1, flexDirection:"row" }}>
-              <View style={{ flex: 2 }}>
+              <View style={{ flex: 3 }}>
                 <TouchableOpacity onPress={retrieveItem}>
                   <View style={styles.touchableButton}>
                     <Text style={styles.buttonText}>Retrieve
@@ -193,14 +203,23 @@ export default function RootLayout() {
                   </View>
                 </TouchableOpacity>
               </View>
-              <View style={{ flex: 2 }}>
-                <TouchableOpacity onPress={deleteItem}>
+              <View style={{ flex: 3 }}>
+                <TouchableOpacity onPress={modifyItem}>
                   <View style={styles.touchableButton}>
-                    <Text style={styles.buttonText}>Delete Item
+                    <Text style={styles.buttonText}>Modify
                     </Text>
                   </View>
                 </TouchableOpacity>
               </View>
+              <View style={{ flex: 3 }}>
+                <TouchableOpacity onPress={deleteItem}>
+                  <View style={styles.touchableButton}>
+                    <Text style={styles.buttonText}>Delete
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              
             </View>
           </View>
         </View>
