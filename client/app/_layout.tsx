@@ -60,6 +60,8 @@ export default function RootLayout() {
   const [result, setResult] = useState("");
   const [items, setItems] = useState([]);
   const [id, setID] = useState("");
+  const [modifyForm, setModifyForm] = useState(false);
+
 
   async function retrieveAllItems() {
     const response = await axios.get("http://localhost:3000/api");
@@ -96,6 +98,7 @@ export default function RootLayout() {
 
   }
 
+
   async function modifyItem() {
     const response = await axios.put("http://localhost:3000/api/" + id,
     {
@@ -114,9 +117,13 @@ export default function RootLayout() {
   
       <Text style={{ fontSize: 40, fontWeight: "bold"}}>SynthBase</Text>
 
-
-      <View style={{ backgroundColor: "#dae8fc", width: 400, borderWidth: 1, padding: 10}}>
+      <View style={{ backgroundColor: "#dae8fc", width: 500, borderWidth: 1, padding: 10}}>
+        {modifyForm ? (
+        <Text style={styles.subheading}>Modify Synth</Text>
+        ) : 
+        (
         <Text style={styles.subheading}>Add New Synth</Text>
+        )}
         <Text>Make</Text>
         <TextInput
           style={styles.textBox}
@@ -158,16 +165,27 @@ export default function RootLayout() {
           value={formData.voice}
           onChangeText={data => setFormData(values => ({ ...values, voice: data }))}
         />
+        
         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-          <TouchableOpacity onPress={enterItem}>
+          {modifyForm ? (
+            <TouchableOpacity onPress={modifyItem}>
+            <View style={styles.touchableButton}>
+              <Text style={styles.buttonText}>Modify Item
+              </Text>
+            </View>
+          </TouchableOpacity>) :
+          (
+             <TouchableOpacity onPress={enterItem}>
             <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Enter Item
               </Text>
             </View>
           </TouchableOpacity>
+          )}
+          
         </View>
       </View>
-
+      
       <View style={{flexDirection: "row"}}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <TouchableOpacity onPress={retrieveAllItems}>
@@ -224,6 +242,7 @@ export default function RootLayout() {
           </View>
         </View>
       </View>
+      
       <View style={{padding: 10}}>
         <Text style={styles.subheading}>Results</Text>
         <FlatList data={items}
