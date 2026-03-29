@@ -9,9 +9,15 @@ const styles = StyleSheet.create({
       paddingTop: 50
     },
 
-    heading: {
+    subheading: {
       fontSize: 28
       },
+    
+    heading: {
+      fontSize: 40,
+      fontWeight: "bold"
+    },
+
     touchableButton: {
       flex: 1,
       flexDirection: "row",
@@ -100,8 +106,63 @@ export default function RootLayout() {
     }
 
     return (
+      
       <View>
-   
+        <Text style={styles.heading}>SynthBase</Text>
+
+
+        <View>
+          <Text style={styles.subheading}>Enter new synthesizer</Text>
+          <Text>Make</Text>
+          <TextInput
+            style={styles.textBox}
+            value = {formData.make}
+            onChangeText= {data => setFormData(values => ({...values, make:data}))}
+          />
+          
+          <Text>Model</Text>
+          <TextInput
+            style={styles.textBox}
+            value = {formData.model}
+            onChangeText= {data => setFormData(values => ({...values, model:data}))}
+          />
+  
+          <Text>Price</Text>
+          <TextInput
+            style={styles.textBox}
+            value = {formData.price}
+            onChangeText= {data => setFormData(values => ({...values, price:data}))}
+          />
+  
+          <Text>Keyboard</Text>
+          <TextInput
+            style = {styles.textBox}
+            value = {formData.keyboard}
+            onChangeText= {data => setFormData(values => ({...values, keyboard:data}))}
+          />
+  
+          <Text>Type</Text>
+          <TextInput
+            style={styles.textBox}
+            value = {formData.type}
+            onChangeText= {data => setFormData(values => ({...values, type:data}))}
+          />
+  
+          <Text>Voice</Text>
+          <TextInput
+            style={styles.textBox}
+            value = {formData.voice}
+            onChangeText= {data => setFormData(values => ({...values, voice:data}))}
+          />
+  
+          <TouchableOpacity onPress={ enterItem}>
+              <View style={styles.touchableButton}>
+                <Text style={styles.buttonText}>Enter Item
+                  </Text>
+              </View>
+          </TouchableOpacity>
+        </View>
+        
         <TouchableOpacity onPress={ retrieveAllItems }>
             <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Retrieve All Items
@@ -115,13 +176,14 @@ export default function RootLayout() {
                 </Text>
             </View>
         </TouchableOpacity>
-
+        
         <Text>Retrieve Item by ID</Text>
         <TextInput
           style={styles.textBox}
           value = {id}
           onChangeText={setID} />
 
+    
         <TouchableOpacity onPress={ retrieveItem}>
             <View style={styles.touchableButton}>
               <Text style={styles.buttonText}>Retrieve Item
@@ -136,58 +198,9 @@ export default function RootLayout() {
             </View>
         </TouchableOpacity>
 
-        <Text style={styles.heading}>Enter new synthesizer</Text>
-        <Text>Make</Text>
-        <TextInput
-          style={styles.textBox}
-          value = {formData.make}
-          onChangeText= {data => setFormData(values => ({...values, make:data}))}
-        />
         
-        <Text>Model</Text>
-        <TextInput
-          style={styles.textBox}
-          value = {formData.model}
-          onChangeText= {data => setFormData(values => ({...values, model:data}))}
-        />
-
-        <Text>Price</Text>
-        <TextInput
-          style={styles.textBox}
-          value = {formData.price}
-          onChangeText= {data => setFormData(values => ({...values, price:data}))}
-        />
-
-        <Text>Keyboard</Text>
-        <TextInput
-          style = {styles.textBox}
-          value = {formData.keyboard}
-          onChangeText= {data => setFormData(values => ({...values, keyboard:data}))}
-        />
-
-        <Text>Type</Text>
-        <TextInput
-          style={styles.textBox}
-          value = {formData.type}
-          onChangeText= {data => setFormData(values => ({...values, type:data}))}
-        />
-
-        <Text>Voice</Text>
-        <TextInput
-          style={styles.textBox}
-          value = {formData.voice}
-          onChangeText= {data => setFormData(values => ({...values, voice:data}))}
-        />
-
-        <TouchableOpacity onPress={ enterItem}>
-            <View style={styles.touchableButton}>
-              <Text style={styles.buttonText}>Enter Item
-                </Text>
-            </View>
-        </TouchableOpacity>
-
          <View >
-          <Text style={styles.heading}>Results</Text>
+          <Text style={styles.subheading}>Results</Text>
           <FlatList data={items} 
                 renderItem={({item}) => 
                 <View style={styles.listRow}>
