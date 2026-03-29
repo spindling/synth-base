@@ -24,7 +24,7 @@ export default function RootLayout() {
 
     async function retrieveItem()
     {
-      const response = await axios.get("http://localhost:3000/api");
+      const response = await axios.get("http://localhost:3000/api/" + id);
   
       setItems(response.data); 
     }
@@ -43,10 +43,10 @@ export default function RootLayout() {
         <Text>Retrieve Item by ID</Text>
         <TextInput
           style={{borderWidth: 2}}
-          value = {value}
-          onChangeText={setValue} />
+          value = {id}
+          onChangeText={setID} />
 
-        <Button onPress={ () => setID(value) }
+        <Button onPress={ retrieveItem }
                 title="Retrieve item"/>
         <Text>{id}</Text>
         
