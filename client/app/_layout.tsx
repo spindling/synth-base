@@ -149,7 +149,7 @@ export default function RootLayout() {
 
     <ScrollView style={{ flex: 1 }}>
 
-      <Text style={{ fontSize: 40, fontWeight: "bold" }}>SynthBase</Text>
+      <Text style={{ marginHorizontal: 20,fontSize: 40, fontWeight: "bold" }}>SynthBase</Text>
 
       {modifyForm ? (
         <View style={{ marginVertical: 10, backgroundColor: "#dae8fc", maxWidth: 800, borderWidth: 1, padding: 10, marginHorizontal: 20 }}>
