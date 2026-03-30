@@ -98,20 +98,21 @@ export default function RootLayout() {
   }
   async function deleteAllItems() {
     const response = await axios.delete("http://localhost:3000/api");
+    retrieveAllItems();
   }
 
   async function retrieveItem() {
     //needs functionality to only retrieve one item if id is empty
 
     const response = await axios.get("http://localhost:3000/api/" + id);
-
     setItems(response.data);
+
   }
 
   async function deleteItem() {
     //needs functionality to only delete one item if id is empty
     const response = await axios.delete("http://localhost:3000/api/" + id);
-
+     retrieveAllItems();
   }
 
   async function modifyItem() {
@@ -124,6 +125,7 @@ export default function RootLayout() {
         type: modFormData.type,
         voice: modFormData.voice
       });
+     retrieveItem();
   }
 
   async function retrieveItemtoModify(){
