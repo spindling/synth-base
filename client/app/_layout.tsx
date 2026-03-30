@@ -305,6 +305,17 @@ export default function RootLayout() {
 
       <View style={{ padding: 10 }}>
         <Text style={styles.subheading}>Results</Text>
+        <View style={styles.listRow}>
+
+          <Text style={styles.listItem}>Make</Text>
+          <Text style={styles.listItem}>Model </Text>
+          <Text style={styles.listItem}>Price</Text>
+          <Text style={styles.listItem}>Keyboard</Text>
+          <Text style={styles.listItem}>Type</Text>
+          <Text style={styles.listItem}>Voice</Text>
+        </View>
+        
+
         <FlatList data={items}
           renderItem={({ item }) =>
             <View style={styles.listRow}>
