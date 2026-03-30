@@ -352,7 +352,7 @@ export default function RootLayout() {
       <View style={{ padding: 10, maxWidth: 800 }}>
         <Text style={styles.subheading}>Results</Text>
         <View style={styles.headerRow}>
-
+          <Text style={styles.headerItem}>Row ID</Text>
           <Text style={styles.headerItem}>Make</Text>
           <Text style={styles.headerItem}>Model </Text>
           <Text style={styles.headerItem}>Price</Text>
@@ -365,7 +365,7 @@ export default function RootLayout() {
         <FlatList data={items}
           renderItem={({ item }) =>
             <View style={styles.listRow}>
-
+              <Text style={styles.listItem}>{item.id}</Text>
               <Text style={styles.listItem}>{item.make}</Text>
               <Text style={styles.listItem}>{item.model} </Text>
               <Text style={styles.listItem}>{item.price} </Text>
