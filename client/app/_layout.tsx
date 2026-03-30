@@ -128,7 +128,16 @@ export default function RootLayout() {
 
   async function retrieveItemtoModify(){
       const response = await axios.get("http://localhost:3000/api/" + id);
-      setModFormData(response.data);
+      setModFormData({
+        make: response.data.make,
+        model: response.data.model,
+        price: response.data.price,       
+        keyboard: response.data.keyboard, 
+        type: response.data.type,
+        voice: response.data.voice
+      });
+      console.log(response.data);
+
   }
 
 
