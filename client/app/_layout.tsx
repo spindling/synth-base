@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   },
 
   touchableButton: {
-    flex: 1,
     flexDirection: "row",
+    flex: 1,
     padding: 5,
     marginVertical: 5,
     marginHorizontal: 2,
-    width: 100,
-    height: 50,
+    maxWidth: 100,
+    maxHeight: 50,
     borderWidth: 1,
     backgroundColor: "#4169E1",
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     color: "white",
 
   },
-  headerItem:{
+  headerItem: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
@@ -112,7 +112,7 @@ export default function RootLayout() {
   async function deleteItem() {
     //needs functionality to only delete one item if id is empty
     const response = await axios.delete("http://localhost:3000/api/" + id);
-     retrieveAllItems();
+    retrieveAllItems();
   }
 
   async function modifyItem() {
@@ -125,32 +125,32 @@ export default function RootLayout() {
         type: modFormData.type,
         voice: modFormData.voice
       });
-     retrieveItem();
+    retrieveItem();
   }
 
-  async function retrieveItemtoModify(){
-      const response = await axios.get("http://localhost:3000/api/" + id);
-      setModFormData({
-        make: response.data[0].make,
-        model: response.data[0].model,
-        price: response.data[0].price,       
-        keyboard: response.data[0].keyboard, 
-        type: response.data[0].type,
-        voice: response.data[0].voice
-      });
-      
+  async function retrieveItemtoModify() {
+    const response = await axios.get("http://localhost:3000/api/" + id);
+    setModFormData({
+      make: response.data[0].make,
+      model: response.data[0].model,
+      price: response.data[0].price,
+      keyboard: response.data[0].keyboard,
+      type: response.data[0].type,
+      voice: response.data[0].voice
+    });
+
 
   }
 
 
   return (
 
-    <View >
+    <ScrollView style={{ flex: 1 }}>
 
       <Text style={{ fontSize: 40, fontWeight: "bold" }}>SynthBase</Text>
 
       {modifyForm ? (
-        <View style={{ backgroundColor: "#dae8fc", width: 500, borderWidth: 1, padding: 10 }}>
+        <View style={{ marginVertical: 10, backgroundColor: "#dae8fc", maxWidth: 800, borderWidth: 1, padding: 10, marginHorizontal: 20 }}>
 
           <Text style={styles.subheading}>Modify Synth</Text>
 
@@ -160,7 +160,7 @@ export default function RootLayout() {
             value={modFormData.make}
             onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
           />
-       
+
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
@@ -216,7 +216,7 @@ export default function RootLayout() {
           </View>
         </View>
       ) : (
-        <View style={{ backgroundColor: "#dae8fc", width: 500, borderWidth: 1, padding: 10 }}>
+        <View style={{ marginVertical: 10, backgroundColor: "#dae8fc", maxWidth: 800, borderWidth: 1, padding: 10, marginHorizontal: 20 }}>
 
           <Text style={styles.subheading}>Add New Synth</Text>
 
@@ -263,38 +263,54 @@ export default function RootLayout() {
           />
 
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-
-
             <TouchableOpacity onPress={enterItem}>
               <View style={styles.touchableButton}>
-                <Text style={styles.buttonText}>Enter Item
-                </Text>
+                <Text style={styles.buttonText}>Enter Item</Text>
               </View>
             </TouchableOpacity>
-
-
           </View>
         </View>
       )}
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ marginVertical: 10, flexDirection: "row", maxWidth: 800, marginHorizontal: 20 }}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <TouchableOpacity onPress={retrieveAllItems}>
-            <View style={styles.touchableButton}>
-              <Text style={styles.buttonText}>Retrieve All Items
+            <View style={{
+              padding: 5,
+              marginVertical: 5,
+              marginHorizontal: 2,
+              maxWidth: 250,
+              maxHeight: 50,
+              borderWidth: 1,
+              borderColor: "#4fa6f3ee",
+              backgroundColor: "#f2f4f9ff",
+            }}>
+              <Text style={{
+                fontSize: 16,
+                color: "#4fa6f3ee",
+              }}>Retrieve Synth Collection
               </Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={deleteAllItems}>
-            <View style={styles.touchableButton}>
-              <Text style={styles.buttonText}>Delete All Items
+           <View style={{
+              padding: 5,
+              marginVertical: 5,
+              marginHorizontal: 2,
+              maxWidth: 250,
+              maxHeight: 50,
+              borderWidth: 1,
+              borderColor: "#e72117ee",
+              backgroundColor: "#e72117ee",
+            }}>
+              <Text style={styles.buttonText}>Delete Synth Collection
               </Text>
             </View>
           </TouchableOpacity>
         </View>
 
         <View style={{ flex: 1 }}>
-          <View style={{ flexDirection: "column", backgroundColor: "#49eb5772", width: 400, height: 200, padding: 10 }}>
+          <View style={{ flexDirection: "column", backgroundColor: "#d5e8d4", maxWidth: 400, height: 200, padding: 10, borderWidth: 1, marginHorizontal: 20 }}>
             <View style={{ flex: 2 }}>
               <Text style={styles.subheading}>Enter Synth ID:</Text>
               <TextInput
@@ -312,7 +328,7 @@ export default function RootLayout() {
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 3 }}>
-                <TouchableOpacity onPress={() => {setModifyForm(true); retrieveItemtoModify();}}>
+                <TouchableOpacity onPress={() => { setModifyForm(true); retrieveItemtoModify(); }}>
                   <View style={styles.touchableButton}>
                     <Text style={styles.buttonText}>Modify
                     </Text>
@@ -333,7 +349,7 @@ export default function RootLayout() {
         </View>
       </View>
 
-      <View style={{ padding: 10 }}>
+      <View style={{ padding: 10, maxWidth: 800 }}>
         <Text style={styles.subheading}>Results</Text>
         <View style={styles.headerRow}>
 
@@ -344,7 +360,7 @@ export default function RootLayout() {
           <Text style={styles.headerItem}>Type</Text>
           <Text style={styles.headerItem}>Voice</Text>
         </View>
-        
+
 
         <FlatList data={items}
           renderItem={({ item }) =>
@@ -362,7 +378,7 @@ export default function RootLayout() {
 
       </View>
 
-    </View>
+    </ScrollView>
   );
 
 }
