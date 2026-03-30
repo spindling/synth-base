@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
   },
 
   subheading: {
-    fontSize: 28
+    fontSize: 28,
+    marginBottom: 10
   },
 
   touchableButton: {
@@ -66,7 +67,9 @@ const styles = StyleSheet.create({
   textBox: {
     backgroundColor: "#eeeeeeff",
     borderWidth: 2,
-    width: 200
+    maxWidth: 200,
+    padding: 2,
+    marginVertical: 5
   }
 
 })
@@ -153,49 +156,52 @@ export default function RootLayout() {
         <View style={{ marginVertical: 10, backgroundColor: "#dae8fc", maxWidth: 800, borderWidth: 1, padding: 10, marginHorizontal: 20 }}>
 
           <Text style={styles.subheading}>Modify Synth</Text>
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            <View style={{ flex: 1 }}>
+              <Text>Make</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.make}
+                onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
+              />
 
-          <Text>Make</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.make}
-            onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
-          />
+              <Text>Model</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.model}
+                onChangeText={data => setModFormData(values => ({ ...values, model: data }))}
+              />
 
-          <Text>Model</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.model}
-            onChangeText={data => setModFormData(values => ({ ...values, model: data }))}
-          />
+              <Text>Price</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.price}
+                onChangeText={data => setModFormData(values => ({ ...values, price: data }))}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text>Keyboard</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.keyboard}
+                onChangeText={data => setModFormData(values => ({ ...values, keyboard: data }))}
+              />
 
-          <Text>Price</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.price}
-            onChangeText={data => setModFormData(values => ({ ...values, price: data }))}
-          />
+              <Text>Type</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.type}
+                onChangeText={data => setModFormData(values => ({ ...values, type: data }))}
+              />
 
-          <Text>Keyboard</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.keyboard}
-            onChangeText={data => setModFormData(values => ({ ...values, keyboard: data }))}
-          />
-
-          <Text>Type</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.type}
-            onChangeText={data => setModFormData(values => ({ ...values, type: data }))}
-          />
-
-          <Text>Voice</Text>
-          <TextInput
-            style={styles.textBox}
-            value={modFormData.voice}
-            onChangeText={data => setModFormData(values => ({ ...values, voice: data }))}
-          />
-
+              <Text>Voice</Text>
+              <TextInput
+                style={styles.textBox}
+                value={modFormData.voice}
+                onChangeText={data => setModFormData(values => ({ ...values, voice: data }))}
+              />
+            </View>
+          </View>
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             {modifyForm ? (
               <TouchableOpacity onPress={() => { modifyItem(); setModifyForm(false) }}>
@@ -219,49 +225,52 @@ export default function RootLayout() {
         <View style={{ marginVertical: 10, backgroundColor: "#dae8fc", maxWidth: 800, borderWidth: 1, padding: 10, marginHorizontal: 20 }}>
 
           <Text style={styles.subheading}>Add New Synth</Text>
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            <View style={{ flex: 1 }}>
+              <Text>Make</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.make}
+                onChangeText={data => setNewFormData(values => ({ ...values, make: data }))}
+              />
+              <Text>{newFormData.make}</Text>
+              <Text>Model</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.model}
+                onChangeText={data => setNewFormData(values => ({ ...values, model: data }))}
+              />
 
-          <Text>Make</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.make}
-            onChangeText={data => setNewFormData(values => ({ ...values, make: data }))}
-          />
-          <Text>{newFormData.make}</Text>
-          <Text>Model</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.model}
-            onChangeText={data => setNewFormData(values => ({ ...values, model: data }))}
-          />
+              <Text>Price</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.price}
+                onChangeText={data => setNewFormData(values => ({ ...values, price: data }))}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text>Keyboard</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.keyboard}
+                onChangeText={data => setNewFormData(values => ({ ...values, keyboard: data }))}
+              />
 
-          <Text>Price</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.price}
-            onChangeText={data => setNewFormData(values => ({ ...values, price: data }))}
-          />
+              <Text>Type</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.type}
+                onChangeText={data => setNewFormData(values => ({ ...values, type: data }))}
+              />
 
-          <Text>Keyboard</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.keyboard}
-            onChangeText={data => setNewFormData(values => ({ ...values, keyboard: data }))}
-          />
-
-          <Text>Type</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.type}
-            onChangeText={data => setNewFormData(values => ({ ...values, type: data }))}
-          />
-
-          <Text>Voice</Text>
-          <TextInput
-            style={styles.textBox}
-            value={newFormData.voice}
-            onChangeText={data => setNewFormData(values => ({ ...values, voice: data }))}
-          />
-
+              <Text>Voice</Text>
+              <TextInput
+                style={styles.textBox}
+                value={newFormData.voice}
+                onChangeText={data => setNewFormData(values => ({ ...values, voice: data }))}
+              />
+            </View>
+          </View>
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             <TouchableOpacity onPress={enterItem}>
               <View style={styles.touchableButton}>
@@ -293,7 +302,7 @@ export default function RootLayout() {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={deleteAllItems}>
-           <View style={{
+            <View style={{
               padding: 5,
               marginVertical: 5,
               marginHorizontal: 2,
@@ -350,7 +359,7 @@ export default function RootLayout() {
       </View>
 
       <View style={{ padding: 10, maxWidth: 800 }}>
-        <Text style={styles.subheading}>Results</Text>
+        <Text style={styles.subheading}>Synth Collection</Text>
         <View style={styles.headerRow}>
           <Text style={styles.headerItem}>Row ID</Text>
           <Text style={styles.headerItem}>Make</Text>
