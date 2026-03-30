@@ -16,6 +16,8 @@ async function startup(){
         ["Yamaha", "DX7", "700", "1", "Digital", "Polyphonic"]);
     await db.run("INSERT INTO Synthesizers VALUES (?,?,?,?,?,?)", 
         ["ARP", "2600", "7500", "0", "Analog", "Monophonic"]);
+    await db.run("INSERT INTO Synthesizers VALUES (?,?,?,?,?,?)", 
+        ["Korg", "MicroKog", "600", "1", "Digital", "Polyphonic"]);   
 }
 
 startup();
