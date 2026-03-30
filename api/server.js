@@ -50,7 +50,7 @@ app.get("/api/:id", async function(req, res){
 app.put("/api/:id", async function(req, res){
     console.log("PUT/MODIFY ITEM REQUEST RECEIVED");
 
-    await db.run("UPDATE Synthesizers SET model=?, make=?, price=?, keyboard=?, type=?, voice=? WHERE rowid=?",
+    await db.run("UPDATE Synthesizers SET make=?, model=?, price=?, keyboard=?, type=?, voice=? WHERE rowid=?",
         [req.body.make, req.body.model, req.body.price, req.body.keyboard, req.body.type, req.body.voice, req.params.id]);
     
     res.json({"status": `Record with id=${req.params.id} updated`});

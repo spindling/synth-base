@@ -136,7 +136,7 @@ export default function RootLayout() {
         type: response.data[0].type,
         voice: response.data[0].voice
       });
-      console.log(response.data);
+      
 
   }
 
@@ -158,7 +158,7 @@ export default function RootLayout() {
             value={modFormData.make}
             onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
           />
-          <Text>{modFormData.make}</Text>
+       
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
