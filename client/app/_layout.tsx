@@ -76,11 +76,9 @@ const styles = StyleSheet.create({
 export default function RootLayout() {
   const [newFormData, setNewFormData] = useState({ make: "", model: "", price: "", keyboard: "", type: "", voice: "" });
   const [modFormData, setModFormData] = useState({ make: "", model: "", price: "", keyboard: "", type: "", voice: "" });
-  const [result, setResult] = useState("");
   const [items, setItems] = useState([]);
   const [id, setID] = useState("");
   const [modifyForm, setModifyForm] = useState(false);
-
 
   async function retrieveAllItems() {
     const response = await axios.get("http://localhost:3000/api");
@@ -98,6 +96,7 @@ export default function RootLayout() {
         type: newFormData.type,
         voice: newFormData.voice
       });
+      retrieveAllItems();
   }
   async function deleteAllItems() {
     const response = await axios.delete("http://localhost:3000/api");
@@ -115,6 +114,7 @@ export default function RootLayout() {
   async function deleteItem() {
     //needs functionality to only delete one item if id is empty
     const response = await axios.delete("http://localhost:3000/api/" + id);
+    setID("");
     retrieveAllItems();
   }
 
@@ -128,7 +128,7 @@ export default function RootLayout() {
         type: modFormData.type,
         voice: modFormData.voice
       });
-    retrieveItem();
+    retrieveAllItems();
   }
 
   async function retrieveItemtoModify() {
@@ -144,7 +144,6 @@ export default function RootLayout() {
 
 
   }
-
 
   return (
 
@@ -175,6 +174,7 @@ export default function RootLayout() {
               <Text>Price</Text>
               <TextInput
                 style={styles.textBox}
+                inputMode="numeric"
                 value={modFormData.price}
                 onChangeText={data => setModFormData(values => ({ ...values, price: data }))}
               />
@@ -183,6 +183,7 @@ export default function RootLayout() {
               <Text>Keyboard</Text>
               <TextInput
                 style={styles.textBox}
+                inputMode="numeric"
                 value={modFormData.keyboard}
                 onChangeText={data => setModFormData(values => ({ ...values, keyboard: data }))}
               />
@@ -244,6 +245,7 @@ export default function RootLayout() {
               <Text>Price</Text>
               <TextInput
                 style={styles.textBox}
+                inputMode="numeric"
                 value={newFormData.price}
                 onChangeText={data => setNewFormData(values => ({ ...values, price: data }))}
               />
@@ -252,6 +254,7 @@ export default function RootLayout() {
               <Text>Keyboard</Text>
               <TextInput
                 style={styles.textBox}
+                inputMode="numeric"
                 value={newFormData.keyboard}
                 onChangeText={data => setNewFormData(values => ({ ...values, keyboard: data }))}
               />
