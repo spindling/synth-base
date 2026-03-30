@@ -33,6 +33,22 @@ const styles = StyleSheet.create({
     color: "white",
 
   },
+  headerItem:{
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 5,
+    marginHorizontal: 0,
+
+  },
+  headerRow: {
+    flex: 2,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 1,
+    backgroundColor: "#c7c3ca93",
+
+  },
   listItem: {
     flex: 1,
     flexDirection: "row",
@@ -98,7 +114,6 @@ export default function RootLayout() {
 
   }
 
-
   async function modifyItem() {
     const response = await axios.put("http://localhost:3000/api/" + id,
       {
@@ -111,6 +126,10 @@ export default function RootLayout() {
       });
   }
 
+  async function retrieveItemtoModify(){
+      const response = await axios.get("http://localhost:3000/api/" + id);
+      setModFormData(response.data);
+  }
 
 
   return (
@@ -130,7 +149,7 @@ export default function RootLayout() {
             value={modFormData.make}
             onChangeText={data => setModFormData(values => ({ ...values, make: data }))}
           />
-
+          <Text>{modFormData.make}</Text>
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
@@ -168,7 +187,7 @@ export default function RootLayout() {
 
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             {modifyForm ? (
-              <TouchableOpacity onPress={() => { modifyItem; setModifyForm(false) }}>
+              <TouchableOpacity onPress={() => { modifyItem(); setModifyForm(false) }}>
                 <View style={styles.touchableButton}>
                   <Text style={styles.buttonText}>Modify Item
                   </Text>
@@ -196,7 +215,7 @@ export default function RootLayout() {
             value={newFormData.make}
             onChangeText={data => setNewFormData(values => ({ ...values, make: data }))}
           />
-
+          <Text>{newFormData.make}</Text>
           <Text>Model</Text>
           <TextInput
             style={styles.textBox}
@@ -282,7 +301,7 @@ export default function RootLayout() {
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 3 }}>
-                <TouchableOpacity onPress={() => (setModifyForm(true))}>
+                <TouchableOpacity onPress={() => {setModifyForm(true); retrieveItemtoModify();}}>
                   <View style={styles.touchableButton}>
                     <Text style={styles.buttonText}>Modify
                     </Text>
@@ -305,14 +324,14 @@ export default function RootLayout() {
 
       <View style={{ padding: 10 }}>
         <Text style={styles.subheading}>Results</Text>
-        <View style={styles.listRow}>
+        <View style={styles.headerRow}>
 
-          <Text style={styles.listItem}>Make</Text>
-          <Text style={styles.listItem}>Model </Text>
-          <Text style={styles.listItem}>Price</Text>
-          <Text style={styles.listItem}>Keyboard</Text>
-          <Text style={styles.listItem}>Type</Text>
-          <Text style={styles.listItem}>Voice</Text>
+          <Text style={styles.headerItem}>Make</Text>
+          <Text style={styles.headerItem}>Model </Text>
+          <Text style={styles.headerItem}>Price</Text>
+          <Text style={styles.headerItem}>Keyboard</Text>
+          <Text style={styles.headerItem}>Type</Text>
+          <Text style={styles.headerItem}>Voice</Text>
         </View>
         
 
